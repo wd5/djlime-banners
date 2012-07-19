@@ -1,0 +1,11 @@
+{% if banners.exists %}
+    <div id="banners_block">
+        {% for banner in banners %}
+            <div class="banner">
+                <a href="{{ banner.get_absolute_url }}" target="_blank">
+                    <img src="{{ banner.image.url }}" />
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

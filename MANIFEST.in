@@ -1,0 +1,2 @@
+recursive-include banners/locale *.po *.mo
+recursive-include banners/templates/banners/includes *.htm *.html
