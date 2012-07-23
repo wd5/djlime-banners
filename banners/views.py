@@ -6,7 +6,7 @@ from models import Banner, Statistics
 def banner_manager(request):
     to = request.GET.get('to', None)
 
-    if to is None:
+    if to is None or not isinstance(to, int):
         raise Http404
 
     clicked_banner = get_object_or_404(Banner, id=to)
