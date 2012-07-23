@@ -1,4 +1,5 @@
-from django.shortcuts import redirect
+from django.http import Http404
+from django.shortcuts import redirect, get_object_or_404
 
 from models import Banner, Statistics
 
@@ -6,12 +7,9 @@ def banner_manager(request):
     to = request.GET.get('to', None)
 
     if to is None:
-        return redirect('%s/../' %  request.path)
+        raise Http404
 
-    try:
-        clicked_banner = Banner.objects.get(id=to)
-    except Banner.DoesNotExist:
-        return redirect('%s/../' %  request.path)
+    clicked_banner = get_object_or_404(Banner, id=to)
 
     statistics = Statistics(
         banner = clicked_banner,
